@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Janine 🎉</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: radial-gradient(circle at bottom, #fff0f6, #ffd6e8);
+        overflow: hidden;
+        font-family: 'Segoe UI', sans-serif;
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 50px;
+        color: #c2185b;
+        font-size: 3.2em;
+        animation: glow 2s infinite alternate;
+    }
+
+    h2 {
+        color: #ad1457;
+        font-weight: normal;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #ff80ab; }
+        to { text-shadow: 0 0 30px #ff4081; }
+    }
+
+    button {
+        margin-top: 30px;
+        padding: 15px 40px;
+        font-size: 1.1em;
+        border: none;
+        border-radius: 30px;
+        background: linear-gradient(45deg, #ff4081, #ff80ab);
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 0 20px rgba(255,64,129,0.6);
+        transition: transform 0.2s;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+    }
+
+    /* Falling flowers */
+    .petal {
+        position: fixed;
+        top: -50px;
+        font-size: 30px;
+        animation: fall linear forwards;
+        pointer-events: none;
+        filter: drop-shadow(0 0 6px rgba(255,255,255,0.8));
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    /* Blooming flowers */
+    .bloom {
+        position: absolute;
+        bottom: 20px;
+        font-size: 0;
+        animation: bloom 3s ease-out forwards;
+    }
+
+    @keyframes bloom {
+        0% { font-size: 0; opacity: 0; }
+        60% { opacity: 1; }
+        100% { font-size: 90px; }
+    }
+
+    footer {
+        position: absolute;
+        bottom: 15px;
+        width: 100%;
+        color: #880e4f;
+        font-size: 0.9em;
+        opacity: 0.8;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>🎉 Happy Birthday Janine 🎉</h1>
+<h2>May your day bloom with joy, love, and beautiful surprises 🌸</h2>
+
+<button onclick="celebrate()">🌸 Tap for Birthday Magic 🌸</button>
+
+<footer>Made with love 💖</footer>
+
+<script>
+    const flowerSets = [
+        ["🌸","🌸","🌸"],
+        ["🌹","🌹","🌹"],
+        ["🌺","🌺","🌺"],
+        ["🌼","🌼","🌼"],
+        ["💐","🌷","🌸"]
+    ];
+
+    let index = 0;
+
+    // Blooming flowers at the bottom
+    for (let i = 0; i < 3; i++) {
+        const bloom = document.createElement("div");
+        bloom.className = "bloom";
+        bloom.textContent = "🌸";
+        bloom.style.left = 20 + i * 30 + "%";
+        document.body.appendChild(bloom);
+    }
+
+    function celebrate() {
+        for (let i = 0; i < 30; i++) {
+            createPetal();
+        }
+        index = (index + 1) % flowerSets.length;
+    }
+
+    function createPetal() {
+        const petal = document.createElement("div");
+        petal.className = "petal";
+        petal.textContent = flowerSets[index][Math.floor(Math.random() * flowerSets[index].length)];
+        petal.style.left = Math.random() * window.innerWidth + "px";
+        petal.style.animationDuration = (Math.random() * 3 + 4) + "s";
+        petal.style.opacity = Math.random();
+        document.body.appendChild(petal);
+
+        setTimeout(() => petal.remove(), 7000);
+    }
+</script>
+
+</body>
+</html>
